@@ -1,4 +1,4 @@
-[windows-syscall][windows-syscall]: Windows syscalls for Rust
+[Windows syscalls for Rust][windows-syscall]
 ========================================
 
 [![windows-syscall GitHub Actions][github.img]][github]
@@ -15,3 +15,5 @@ This call provides Windows syscalls for Rust.
 [crates-io.img]: https://img.shields.io/crates/v/windows-syscall.svg
 [docs-rs]: https://docs.rs/windows-syscall
 [docs-rs.img]: https://docs.rs/windows-syscall/badge.svg
+
+[windows-syscall]: https://github.com/oberrich/windows-syscall
