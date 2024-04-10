@@ -13,6 +13,9 @@ default = ["windows-syscall-typesafe"]
 windows-syscall-typesafe = []
 windows-syscall-use-linked = []
 
+[lib]
+doctest = false
+
 [dependencies]
 const-fnv1a-hash = "1.1.0"
 once_cell = "1.19.0"
