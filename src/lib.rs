@@ -92,7 +92,8 @@ macro_rules! syscall {
    ($fun:ident($($args:expr$(,)?)*)) => {{
       use core::{sync::atomic::{AtomicUsize, Ordering}, mem::MaybeUninit, arch::asm};
 
-      #[allow(unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)] unsafe {
+
+      #[allow(internal_features, unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)] unsafe {
          if cfg!(feature="windows-syscall-use-linked") {
             $fun($($args,)*)
          } else {
