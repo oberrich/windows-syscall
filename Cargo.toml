@@ -1,6 +1,6 @@
 [package]
 name = "windows-syscall"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 license = "MIT"
 authors = ["oberrich <oberrich.llvm@proton.me>"]
@@ -18,7 +18,7 @@ all-features = true
 default-target = "x86_64-pc-windows-msvc"
 targets = ["x86_64-pc-windows-msvc"]
 rustdoc-args = ["--cfg=docsrs"]
-rustdoc = ["--cfg=docsrs"]
+rustc-args = ["--cfg=docsrs"]
 
 [lib]
 doctest = false
@@ -27,4 +27,4 @@ doctest = false
 const-fnv1a-hash = "1.1.0"
 once_cell = "1.19.0"
 exe = "0.5.6"
-phnt = "0.0.19"
+phnt = "0.0.17"
