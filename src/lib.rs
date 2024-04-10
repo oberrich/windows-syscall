@@ -27,7 +27,8 @@ use std::collections::HashMap;
 use const_fnv1a_hash::fnv1a_hash_str_64;
 use exe::{Address, ImageExportDirectory, ThunkData};
 use once_cell::sync::Lazy;
-use phnt::ffi::{NtCurrentTeb, LDR_DATA_TABLE_ENTRY};
+use phnt::ext::NtCurrentTeb;
+use phnt::ffi::LDR_DATA_TABLE_ENTRY;
 
 /// `32 bytes` of shadow stack space (msabi) `8 bytes` for return address (isa)
 pub const STACK_ALLOC: usize = 40;
