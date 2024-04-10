@@ -21,13 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-#![allow(internal_features)]
-#![feature(
-    allow_internal_unstable,
-    asm_const,
-    maybe_uninit_uninit_array,
-    maybe_uninit_array_assume_init
-)]
+#![feature(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
 use std::collections::HashMap;
 
 use const_fnv1a_hash::fnv1a_hash_str_64;
@@ -81,7 +75,6 @@ pub static SSN_MAP: Lazy<HashMap<u64, u32>> = Lazy::new(|| unsafe {
 
 #[cfg(target_arch = "x86_64")]
 #[macro_export]
-#[allow_internal_unstable(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
 macro_rules! syscall {
    (@subst_tts $_:tt $x:expr) => {$x};
 
@@ -93,7 +86,7 @@ macro_rules! syscall {
       use core::{sync::atomic::{AtomicUsize, Ordering}, mem::MaybeUninit, arch::asm};
 
 
-      #[allow(internal_features, unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)] unsafe {
+      #[allow(unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)] unsafe {
          if cfg!(feature="windows-syscall-use-linked") {
             $fun($($args,)*)
          } else {
@@ -196,7 +189,7 @@ mod tests {
     fn basic() {
         assert_eq!(
             syscall!(NtClose(core::ptr::null_mut::<std::ffi::c_void>())).0,
-            -1073741816i32 /* EXCEPTION_INVALID_HANDLE */
+            -1073741816i32 /* STATUS_INVALID_HANDLE */
         );
     }
 
