@@ -21,7 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-#![feature(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
+#![allow(internal_features)]
+#![feature(
+    allow_internal_unstable,
+    asm_const,
+    maybe_uninit_uninit_array,
+    maybe_uninit_array_assume_init
+)]
 use std::collections::HashMap;
 
 use const_fnv1a_hash::fnv1a_hash_str_64;
@@ -75,6 +81,7 @@ pub static SSN_MAP: Lazy<HashMap<u64, u32>> = Lazy::new(|| unsafe {
 
 #[cfg(target_arch = "x86_64")]
 #[macro_export]
+#[allow_internal_unstable(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
 macro_rules! syscall {
    (@subst_tts $_:tt $x:expr) => {$x};
 
