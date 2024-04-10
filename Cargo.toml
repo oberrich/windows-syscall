@@ -1,6 +1,6 @@
 [package]
 name = "windows-syscall"
-version = "0.0.8"
+version = "0.0.9"
 edition = "2021"
 license = "MIT"
 authors = ["oberrich <oberrich.llvm@proton.me>"]
@@ -12,6 +12,12 @@ description = "Windows inline syscalls for Rust"
 default = ["windows-syscall-typesafe"]
 windows-syscall-typesafe = []
 windows-syscall-use-linked = []
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "x86_64-pc-windows-msvc"
+targets = ["x86_64-pc-windows-msvc"]
+rustdoc-args = ["--cfg", "docsrs"]
 
 [lib]
 doctest = false
