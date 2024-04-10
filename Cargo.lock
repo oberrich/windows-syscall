@@ -393,9 +393,9 @@ checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "phnt"
-version = "0.0.8"
+version = "0.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e8b769d8150e404bc1f1db4a725a51aac0ad5d9b46515788f140ac4c123f9bb"
+checksum = "21b767576edabf034711a3ed57a478dca8e8fbac11903c9c64bb4892d12a8ebe"
 dependencies = [
  "bindgen",
  "chrono",

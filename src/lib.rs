@@ -1,3 +1,4 @@
+#![doc = include_str!("../README.md")]
 // MIT License
 //
 // Copyright (c) 2024 oberrich <oberrich.llvm@proton.me>
