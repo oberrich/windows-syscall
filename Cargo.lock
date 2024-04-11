@@ -393,9 +393,9 @@ checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "phnt"
-version = "0.0.17"
+version = "0.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "84a230125049951c3bdd24be8dbcb0f26860f6cf900daa51e0076a2deecd2151"
+checksum = "ef24b5d2969c566cbf07e99a04ab87cabd93f3e5dda6b35ced995d6b7e86dd1a"
 dependencies = [
  "bindgen",
  "chrono",
@@ -677,7 +677,7 @@ dependencies = [
 
 [[package]]
 name = "windows-syscall"
-version = "0.0.9"
+version = "0.0.10"
 dependencies = [
  "const-fnv1a-hash",
  "exe",
