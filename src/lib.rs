@@ -174,6 +174,8 @@ mod tests {
     use phnt::ffi::{NtClose, NTSTATUS};
 
     extern "C" {
+        fn NtTestAlert() -> NTSTATUS;
+
         fn NtNArgs0() -> NTSTATUS;
         fn NtNArgs1(_1: usize) -> NTSTATUS;
         fn NtNArgs2(_1: usize, _2: usize) -> NTSTATUS;
@@ -184,7 +186,12 @@ mod tests {
     }
 
     #[test]
-    fn basic() {
+    fn basic_succeess() {
+        assert_eq!(syscall!(NtTestAlert()).0, 0);
+    }
+
+    #[test]
+    fn basic_failure() {
         assert_eq!(
             syscall!(NtClose(core::ptr::null_mut::<std::ffi::c_void>())).0,
             -1073741816i32 /* STATUS_INVALID_HANDLE */
