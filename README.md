@@ -18,8 +18,8 @@ The [`syscall!` macro][syscall-macro] provides a type-safe way to invoke a Windo
 
 ```rust
 #![feature(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
-use windows_syscall::syscall;
 use phnt::ffi::{NTSTATUS, HANDLE, NtClose, NtTestAlert}; // = "0.0.25"
+use windows_syscall::syscall;
 
 fn main() {
    const INVALID_HANDLE: HANDLE = core::ptr::null_mut();
