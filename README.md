@@ -35,7 +35,7 @@ fn main() {
 | x86 *(32-bit)* | :x: No *(on request)*
 | AArch64 | :x: No *(on request)*
 
-*This crate only implements calls to `ntoskrnl` services, if you require `win32k` services or an additional architecture please [create an issue][create-issue] and let me know!*
+*This crate only implements calls to [`ntoskrnl` services][syscall-table-nt], if you require [`win32k` services][syscall-table-win32k] or an additional architecture please [create an issue][create-issue] and let me know!*
 
 
 **crate version:** 0.0.x aka work-in-progress.
@@ -53,3 +53,6 @@ fn main() {
 [create-issue]: https://github.com/oberrich/windows-syscall/issues/new
 
 [x86-syscall]: https://www.felixcloutier.com/x86/syscall
+
+[syscall-table-nt]: https://j00ru.vexillium.org/syscalls/nt/64/
+[syscall-table-win32k]: https://j00ru.vexillium.org/syscalls/win32k/64/
