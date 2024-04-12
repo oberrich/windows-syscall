@@ -32,8 +32,8 @@ fn main() {
 | Arch |  |
 | --- | --- |
 | x86_64 *(64-bit)* | :white_check_mark: **Yes**  |
-| *x86 (32-bit)* | :x: *No (on request)*
-| *AArch64* | :x: *No (on request)*
+| x86 *(32-bit)* | :x: No *(on request)*
+| AArch64 | :x: No *(on request)*
 
 *This crate only implements calls to `ntoskrnl` services, if you require `win32k` services or an additional architecture please [create an issue][create-issue] and let me know!*
 
