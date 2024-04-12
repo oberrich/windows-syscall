@@ -447,7 +447,7 @@ dependencies = [
 
 [[package]]
 name = "windows-syscall"
-version = "0.0.13"
+version = "0.0.14"
 dependencies = [
  "const-fnv1a-hash",
  "exe",
