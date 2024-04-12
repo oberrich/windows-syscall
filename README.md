@@ -5,7 +5,7 @@
 [![windows-syscall on crates.io][crates-io.img]][crates-io]
 [![windows-syscall on docs.rs][docs-rs.img]][docs-rs]
 
-The `syscall!` macro provides a type-safe way to invoke a Windows system service.
+The [`syscall!` macro][syscall-macro] provides a type-safe way to invoke a Windows system service.
 
 #### Available Features
 
@@ -46,6 +46,8 @@ fn main() {
 [crates-io.img]: https://img.shields.io/crates/v/windows-syscall.svg
 [docs-rs]: https://docs.rs/windows-syscall
 [docs-rs.img]: https://docs.rs/windows-syscall/badge.svg
+
+[syscall-macro]: https://docs.rs/windows-syscall/latest/windows_syscall/macro.syscall.html
 
 [windows-syscall]: https://github.com/oberrich/windows-syscall
 [create-issue]: https://github.com/oberrich/windows-syscall/issues/new
