@@ -186,16 +186,13 @@ mod tests {
     }
 
     #[test]
-    fn basic_succeess() {
-        assert_eq!(syscall!(NtTestAlert()).0, 0);
-    }
+    fn basic() {
+        const STATUS_INVALID_HANDLE: i32 = 0xC0000008u32 as i32;
+        const INVALID_HANDLE: *mut std::ffi::c_void = core::ptr::null_mut();
+        assert_eq!(syscall!(NtClose(INVALID_HANDLE)).0, STATUS_INVALID_HANDLE);
 
-    #[test]
-    fn basic_failure() {
-        assert_eq!(
-            syscall!(NtClose(core::ptr::null_mut::<std::ffi::c_void>())).0,
-            -1073741816i32 /* STATUS_INVALID_HANDLE */
-        );
+        const STATUS_SUCCESS: i32 = 0x00000000i32;
+        assert_eq!(syscall!(NtTestAlert()).0, STATUS_SUCCESS);
     }
 
     #[test]

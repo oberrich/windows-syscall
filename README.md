@@ -17,13 +17,15 @@ The [`syscall!` macro][syscall-macro] provides a type-safe way to invoke a Windo
 ### Example
 
 ```rust
-extern "C" {
-    pub fn NtClose(Handle: HANDLE) -> NTSTATUS;
-}
+#![feature(asm_const, maybe_uninit_uninit_array, maybe_uninit_array_assume_init)]
+use windows_syscall::syscall;
+use phnt::ffi::{NTSTATUS, HANDLE, NtClose, NtTestAlert}; // = "0.0.25"
 
 fn main() {
-   assert_eq!(syscall!(NtClose(HANDLE::new(0xvalid))), STATUS_SUCCESS);
-   assert_eq!(syscall!(NtClose(HANDLE::default())), STATUS_INVALID_HANDLE);
+   const INVALID_HANDLE: HANDLE = core::ptr::null_mut();
+
+   assert!(syscall!(NtClose(INVALID_HANDLE)).is_err());
+   assert!(syscall!(NtTestAlert()).is_ok());
 }
 ```
 
