@@ -35,9 +35,8 @@ fn main() {
 | *x86 (32-bit)* | :x: *No (on request)*
 | *AArch64* | :x: *No (on request)*
 
-This crate only implements calls to `ntoskrnl` services, if you require `win32k` services or an additional architecture please [create an issue][create-issue] and let me know!
+*This crate only implements calls to `ntoskrnl` services, if you require `win32k` services or an additional architecture please [create an issue][create-issue] and let me know!*
 
-*Create an [issue][create-issue] to request implementation of an architecture.*
 
 **crate version:** 0.0.x aka work-in-progress.
 
