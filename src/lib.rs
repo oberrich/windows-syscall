@@ -73,6 +73,7 @@ pub static SSN_MAP: Lazy<HashMap<u64, u32>> = Lazy::new(|| unsafe {
     ssn_map
 });
 
+// TODO(chore): Document, document, document...
 #[cfg(target_arch = "x86_64")]
 #[macro_export]
 macro_rules! syscall {
