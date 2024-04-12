@@ -1,4 +1,4 @@
-[Windows syscalls for Rust][windows-syscall]
+[windows-syscall][windows-syscall]: Windows `syscall`s for Rust
 ========================================
 
 [![windows-syscall GitHub Actions][github.img]][github]
