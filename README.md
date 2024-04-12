@@ -31,9 +31,9 @@ fn main() {
 
 | Arch |  |
 | --- | --- |
-| x86_64 *(64-bit)* | :white_check_mark: **Yes**  |
-| x86 *(32-bit)* | :x: No *(on request)*
-| AArch64 | :x: No *(on request)*
+| x86_64 *(64-bit)* | ✅ **Yes**  |
+| x86 *(32-bit)* | ❌ No *(on request)*
+| AArch64 | ❌ No *(on request)*
 
 *This crate only implements calls to [`ntoskrnl` services][syscall-table-nt], if you require [`win32k` services][syscall-table-win32k] or an additional architecture please [create an issue][create-issue] and let me know!*
 
