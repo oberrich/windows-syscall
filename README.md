@@ -1,4 +1,4 @@
-[windows-syscall][windows-syscall]: Windows `syscall`s for Rust
+[windows-syscall][windows-syscall]: Windows [`syscall`][x86-syscall]s for Rust
 ========================================
 
 [![windows-syscall GitHub Actions][github.img]][github]
@@ -51,3 +51,5 @@ fn main() {
 
 [windows-syscall]: https://github.com/oberrich/windows-syscall
 [create-issue]: https://github.com/oberrich/windows-syscall/issues/new
+
+[x86-syscall]: https://www.felixcloutier.com/x86/syscall
