@@ -200,7 +200,7 @@ mod tests {
 
     #[test]
     fn dispatching() {
-        // TODO: Use `trybuild` or something instead of this meme to test dispatching
+        // TODO(chore): Use `trybuild` or something instead of this meme to test dispatching
         if false {
             syscall!(NtNArgs0());
             syscall!(NtNArgs1(1));
