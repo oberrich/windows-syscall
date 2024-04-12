@@ -7,9 +7,12 @@
 
 The `syscall!` macro provides a type-safe way to invoke a Windows system service.
 
-This crate only implements calls to `ntoskrnl` services, if you require `win32k` services please create an issue and let me know.
+#### Available Features
 
-This crate only implements x86_64 arch, if you need x86 (32-bit) implemented create an issue and let me know.
+| Feature | Description |
+| --- | --- |
+| `windows-syscall-typesafe` *(default)*| The macro attempts calling the provided function in a dead branch, ensuring type-safety *(enabled by default).* |
+| *`windows-syscall-use-linked`* | The macro directly invokes the provided function instead of performing an inline syscall. This is only useful for testing/debugging and is equivalent to directly calling the function. |
 
 ### Example
 
@@ -24,6 +27,18 @@ fn main() {
 }
 ```
 
+#### Platform Support
+
+| Arch |  |
+| --- | --- |
+| x86_64 *(64-bit)* | :white_check_mark: **Yes**  |
+| *x86 (32-bit)* | :x: *No (on request)*
+| *AArch64* | :x: *No (on request)*
+
+This crate only implements calls to `ntoskrnl` services, if you require `win32k` services or an additional architecture please [create an issue][create-issue] and let me know!
+
+*Create an [issue][create-issue] to request implementation of an architecture.*
+
 **crate version:** 0.0.x aka work-in-progress.
 
 [github]: https://github.com/oberrich/windows-syscall/actions/workflows/rust.yml
@@ -34,3 +49,4 @@ fn main() {
 [docs-rs.img]: https://docs.rs/windows-syscall/badge.svg
 
 [windows-syscall]: https://github.com/oberrich/windows-syscall
+[create-issue]: https://github.com/oberrich/windows-syscall/issues/new

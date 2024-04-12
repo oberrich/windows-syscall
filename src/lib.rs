@@ -30,16 +30,13 @@ use once_cell::sync::Lazy;
 use phnt::ext::NtCurrentTeb;
 use phnt::ffi::LDR_DATA_TABLE_ENTRY;
 
-/// `32 bytes` of shadow stack space (msabi) `8 bytes` for return address (isa)
+/// [`32 bytes`    msabi](https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170#calling-convention-defaults): shadow stack space  
+/// [`8 bytes`    isa](https://www.felixcloutier.com/x86/call): return address  
 pub const STACK_ALLOC: usize = 40;
-/// ```no_run
-/// 4c 8b d1      :  mov r10, rcx
-/// b8 _  _  _  _ :  mov eax, {sysno}
-/// ```
+/// `4c 8b d1        mov r10, rcx`  
+/// `b8  _  _  _  _  mov eax, {sysno}`
 pub const PROLOGUE_BYTES: u32 = u32::from_ne_bytes([0x4C, 0x8B, 0xD1, 0xB8]);
-/// ```no_run
-/// 0f 05 :  syscall
-/// ```
+/// `0f 05 syscall`  
 pub const SYSCALL_BYTES: u16 = u16::from_ne_bytes([0x0F, 0x05]);
 
 pub fn get_ntdll_base() -> *mut std::ffi::c_void {
