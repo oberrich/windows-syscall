@@ -81,13 +81,13 @@ macro_rules! syscall {
    (@count_tts         $($a:tt $even:tt)*) => { syscall!(@count_tts $($a)*) << 1 };
 
    ($fun:ident($($args:expr$(,)?)*)) => {{
-      use core::{sync::atomic::{AtomicUsize, Ordering}, mem::MaybeUninit, arch::asm};
-
-
-      #[allow(unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)] unsafe {
+      #[allow(unreachable_code, unused_unsafe, unused_mut, unused_assignments, unused_variables)]
+      unsafe {
          if cfg!(feature="windows-syscall-use-linked") {
-            $fun($($args,)*)
+            $fun($($args,)*) as NTSTATUS
          } else {
+            use core::{sync::atomic::{AtomicUsize, Ordering}, mem::MaybeUninit, arch::asm};
+
             // Attempting to directly invoke the function enforces that both the types as well
             // as the number of arguments are compatible with the function prototype.
             //
@@ -105,9 +105,10 @@ macro_rules! syscall {
                SSN.store(*(*$crate::SSN_MAP).get(&FUN_HASH).unwrap_unchecked() as usize, Ordering::Release);
             }
 
-            syscall!(@bind $($args)*)
+            syscall!(@bind $($args)*) as NTSTATUS
          }
-   }}};
+      }
+   }};
 
    (@bind $($r1:tt)?                 ) => { syscall!(@emit [$($r1)?        ]) };
    (@bind $r1:tt $r2:tt              ) => { syscall!(@emit [$r1 $r2        ]) };
