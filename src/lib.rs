@@ -164,7 +164,7 @@ macro_rules! syscall {
          stack_dealloc = const $crate::STACK_ALLOC + 8 * syscall!(@count_tts $($stack)*),
       );
 
-      status as NTSTATUS
+      status
    }};
 }
 
