@@ -163,7 +163,7 @@ macro_rules! syscall {
          stack_dealloc = const $crate::STACK_ALLOC + 8 * syscall!(@count_tts $($stack)*),
       );
 
-      NTSTATUS(status as _)
+      status as NTSTATUS
    }};
 }
 
@@ -189,10 +189,10 @@ mod tests {
     fn basic() {
         const STATUS_INVALID_HANDLE: i32 = 0xC0000008u32 as i32;
         const INVALID_HANDLE: *mut std::ffi::c_void = core::ptr::null_mut();
-        assert_eq!(syscall!(NtClose(INVALID_HANDLE)).0, STATUS_INVALID_HANDLE);
+        assert_eq!(syscall!(NtClose(INVALID_HANDLE)), STATUS_INVALID_HANDLE);
 
         const STATUS_SUCCESS: i32 = 0x00000000i32;
-        assert_eq!(syscall!(NtTestAlert()).0, STATUS_SUCCESS);
+        assert_eq!(syscall!(NtTestAlert()), STATUS_SUCCESS);
     }
 
     #[test]
