@@ -26,5 +26,5 @@ doctest = false
 const-fnv1a-hash = "1.1.0"
 once_cell = "1.19.0"
 exe = "0.5.6"
-phnt = { version = "0.0.25"}
+phnt = { version = "0.0.26"}
 
