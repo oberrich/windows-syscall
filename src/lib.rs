@@ -33,6 +33,8 @@ use phnt::ffi::LDR_DATA_TABLE_ENTRY;
 /// [`32 bytes`    msabi](https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170#calling-convention-defaults): shadow stack space  
 /// [`8 bytes`    isa](https://www.felixcloutier.com/x86/call): return address  
 pub const STACK_ALLOC: usize = 40;
+/// Register width is equivalent to pointer width on targetted platforms
+pub const REGISTER_WIDTH: usize = core::mem::size_of::<usize>();
 /// `4c 8b d1        mov r10, rcx`  
 /// `b8  _  _  _  _  mov eax, {sysno}`
 pub const PROLOGUE_BYTES: u32 = u32::from_ne_bytes([0x4C, 0x8B, 0xD1, 0xB8]);
@@ -161,7 +163,7 @@ macro_rules! syscall {
          // Flags are preserved
          options(preserves_flags),
          stack_alloc   = const $crate::STACK_ALLOC,
-         stack_dealloc = const $crate::STACK_ALLOC + 8 * syscall!(@count_tts $($stack)*),
+         stack_dealloc = const $crate::STACK_ALLOC + $crate::REGISTER_WIDTH * syscall!(@count_tts $($stack)*),
       );
 
       status
