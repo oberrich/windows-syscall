@@ -33,7 +33,7 @@ use phnt::ffi::LDR_DATA_TABLE_ENTRY;
 /// [`32 bytes`    msabi](https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170#calling-convention-defaults): shadow stack space  
 /// [`8 bytes`    isa](https://www.felixcloutier.com/x86/call): return address  
 pub const STACK_ALLOC: usize = 40;
-/// Register width is equivalent to pointer width on targetted platforms
+/// Register width is equivalent to pointer width on targeted platforms
 pub const REGISTER_WIDTH: usize = core::mem::size_of::<usize>();
 /// `4c 8b d1        mov r10, rcx`  
 /// `b8  _  _  _  _  mov eax, {sysno}`
