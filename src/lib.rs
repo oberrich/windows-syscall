@@ -166,8 +166,6 @@ macro_rules! syscall {
          // `r11` preserves rflags
          out("r11") _,
          // Flags are preserved
-
-
          options(preserves_flags),
          stack_alloc   = const $crate::STACK_ALLOC,
          stack_dealloc = const $crate::STACK_ALLOC + $crate::REGISTER_WIDTH * syscall!(@count_tts $($stack)*),
