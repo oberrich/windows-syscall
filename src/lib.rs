@@ -112,7 +112,6 @@ macro_rules! syscall {
       }
    }};
 
-
    // Syscalls without stack arguments are directly emitted
    (@bind $($r1:tt)?)                  => { syscall!(@emit [$($r1)?]) };
    (@bind $r1:tt $r2:tt)               => { syscall!(@emit [$r1 $r2]) };
