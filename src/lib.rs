@@ -179,7 +179,6 @@ macro_rules! syscall {
 #[cfg(test)]
 mod tests {
     use super::*;
-    #[cfg(test)]
     use phnt::ffi::{NtClose, HANDLE, NTSTATUS};
 
     extern "C" {
