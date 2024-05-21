@@ -112,21 +112,27 @@ macro_rules! syscall {
       }
    }};
 
-   (@bind $($r1:tt)?                 ) => { syscall!(@emit [$($r1)?        ]) };
-   (@bind $r1:tt $r2:tt              ) => { syscall!(@emit [$r1 $r2        ]) };
-   (@bind $r1:tt $r2:tt $r3:tt       ) => { syscall!(@emit [$r1 $r2 $r3    ]) };
+
+   // Syscalls without stack arguments are directly emitted
+   (@bind $($r1:tt)?)                  => { syscall!(@emit [$($r1)?]) };
+   (@bind $r1:tt $r2:tt)               => { syscall!(@emit [$r1 $r2]) };
+   (@bind $r1:tt $r2:tt $r3:tt)        => { syscall!(@emit [$r1 $r2 $r3]) };
    (@bind $r1:tt $r2:tt $r3:tt $r4:tt) => { syscall!(@emit [$r1 $r2 $r3 $r4]) };
 
-   // Stack arguments are pushed in reverse order
-   (@bind $r1:tt $r2:tt $r3:tt $r4:tt $($rest:tt)+)
-      => { syscall!(@bind_stack $r1 $r2 $r3 $r4 [$($rest)+]) };
+   // Stack arguments are bound to be in reverse order
+   (@bind $r1:tt $r2:tt $r3:tt $r4:tt $($rest:tt)+) => {
+      syscall!(@bind_stack $r1 $r2 $r3 $r4 [$($rest)+])
+   };
 
-   (@bind_stack $r1:tt $r2:tt $r3:tt $r4:tt [$head:tt $($rest:tt)*] $($reversed:expr)* )
-      => { syscall!(@bind_stack $r1 $r2 $r3 $r4 [$($rest)*] $head $($reversed)* ) };
+   (@bind_stack $r1:tt $r2:tt $r3:tt $r4:tt [$head:tt $($rest:tt)*] $($reversed:expr)* ) => {
+      syscall!(@bind_stack $r1 $r2 $r3 $r4 [$($rest)*] $head $($reversed)*)
+   };
 
-   (@bind_stack $r1:tt $r2:tt $r3:tt $r4:tt [] $($stack:tt)*)
-      => { syscall!(@emit [$r1 $r2 $r3 $r4] $($stack)*) };
+   (@bind_stack $r1:tt $r2:tt $r3:tt $r4:tt [] $($stack:tt)*) => {
+      syscall!(@emit [$r1 $r2 $r3 $r4] $($stack)*)
+   };
 
+   // Emits the actual syscall instruction
    (@emit [$($register:expr)*] $($stack:expr)*) => {{
       let [arg1, arg2, arg3, arg4, mut status] = {
          let mut data = MaybeUninit::<usize>::uninit_array::<5>();
@@ -174,7 +180,7 @@ macro_rules! syscall {
 mod tests {
     use super::*;
     #[cfg(test)]
-    use phnt::ffi::{NtClose, NTSTATUS};
+    use phnt::ffi::{NtClose, HANDLE, NTSTATUS};
 
     extern "C" {
         fn NtTestAlert() -> NTSTATUS;
@@ -188,11 +194,15 @@ mod tests {
         fn NtNArgs6(_1: usize, _2: usize, _3: usize, _4: usize, _5: usize, _6: usize) -> NTSTATUS;
     }
 
+    fn call_nt_close(handle: HANDLE) -> NTSTATUS {
+        syscall!(NtClose(handle))
+    }
+
     #[test]
     fn basic() {
         const STATUS_INVALID_HANDLE: i32 = 0xC0000008u32 as i32;
         const INVALID_HANDLE: *mut std::ffi::c_void = core::ptr::null_mut();
-        assert_eq!(syscall!(NtClose(INVALID_HANDLE)), STATUS_INVALID_HANDLE);
+        assert_eq!(call_nt_close(INVALID_HANDLE), STATUS_INVALID_HANDLE);
 
         const STATUS_SUCCESS: i32 = 0x00000000i32;
         assert_eq!(syscall!(NtTestAlert()), STATUS_SUCCESS);
