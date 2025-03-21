@@ -2,8 +2,9 @@
 ========================================
 
 [![windows-syscall GitHub Actions][github.img]][github]
-[![windows-syscall on crates.io][crates-io.img]][crates-io]
-[![windows-syscall on docs.rs][docs-rs.img]][docs-rs]
+[![windows-syscall on crates.io][shields.io.downloads]][crates.io]
+[![windows-syscall on crates.io][crates.io.img]][crates.io]
+[![windows-syscall on docs.rs][docs.rs.img]][docs.rs]
 
 The [`syscall!` macro][syscall-macro] provides a type-safe way to invoke a Windows system service.
 
@@ -44,10 +45,11 @@ fn main() {
 
 [github]: https://github.com/oberrich/windows-syscall/actions/workflows/rust.yml
 [github.img]: https://github.com/oberrich/windows-syscall/actions/workflows/rust.yml/badge.svg
-[crates-io]: https://crates.io/crates/windows-syscall
-[crates-io.img]: https://img.shields.io/crates/v/windows-syscall.svg
-[docs-rs]: https://docs.rs/windows-syscall
-[docs-rs.img]: https://docs.rs/windows-syscall/badge.svg
+[crates.io]: https://crates.io/crates/windows-syscall
+[crates.io.img]: https://img.shields.io/crates/v/windows-syscall.svg
+[docs.rs]: https://docs.rs/windows-syscall
+[docs.rs.img]: https://docs.rs/windows-syscall/badge.svg
+[shields.io.downloads]: https://img.shields.io/crates/d/windows-syscall.svg
 
 [syscall-macro]: https://docs.rs/windows-syscall/latest/windows_syscall/macro.syscall.html
 
